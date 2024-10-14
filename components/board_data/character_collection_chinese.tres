@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterCollection" load_steps=17 format=3 uid="uid://cnbvwcvbnnd27"]
+
+[ext_resource type="Script" path="res://components/board_data/character_collection.gd" id="1_ileeb"]
+[ext_resource type="Script" path="res://components/board_data/character_data.gd" id="2_tqual"]
+[ext_resource type="Resource" uid="uid://b5n1ncqewstpy" path="res://components/board_data/character_data/chinese_red_pawn.tres" id="3_2ta3k"]
+[ext_resource type="Resource" uid="uid://c5wd0ge2xfc44" path="res://components/board_data/character_data/chinese_red_cannon.tres" id="4_df73s"]
+[ext_resource type="Resource" uid="uid://oi8nck0vkk4d" path="res://components/board_data/character_data/chinese_red_rook.tres" id="5_7s46x"]
+[ext_resource type="Resource" uid="uid://b4vlylkdtkcx7" path="res://components/board_data/character_data/chinese_red_horse.tres" id="6_gib3o"]
+[ext_resource type="Resource" uid="uid://cr1j7s1jtjhsg" path="res://components/board_data/character_data/chinese_red_elephant.tres" id="7_3lmyq"]
+[ext_resource type="Resource" uid="uid://dkbll510rnmky" path="res://components/board_data/character_data/chinese_red_advisor.tres" id="8_i5ipv"]
+[ext_resource type="Resource" uid="uid://dfrbdb6opgrim" path="res://components/board_data/character_data/chinese_red_king.tres" id="9_w2f1a"]
+[ext_resource type="Resource" uid="uid://c7l47o2oapayx" path="res://components/board_data/character_data/chinese_black_pawn.tres" id="10_cdvhx"]
+[ext_resource type="Resource" uid="uid://dpiwt3eihhspt" path="res://components/board_data/character_data/chinese_black_cannon.tres" id="11_1vta8"]
+[ext_resource type="Resource" uid="uid://byhmwiuuce6bi" path="res://components/board_data/character_data/chinese_black_rook.tres" id="12_jpd1d"]
+[ext_resource type="Resource" uid="uid://cx8c5f2wc4ws3" path="res://components/board_data/character_data/chinese_black_horse.tres" id="13_jdbgb"]
+[ext_resource type="Resource" uid="uid://blv8jwi6lwq2" path="res://components/board_data/character_data/chinese_black_elephant.tres" id="14_wd5x8"]
+[ext_resource type="Resource" uid="uid://cikib42ilk0t5" path="res://components/board_data/character_data/chinese_black_advisor.tres" id="15_7nyaq"]
+[ext_resource type="Resource" uid="uid://d03pk36s5028u" path="res://components/board_data/character_data/chinese_black_king.tres" id="16_cnd87"]
+
+[resource]
+script = ExtResource("1_ileeb")
+set_one = Array[ExtResource("2_tqual")]([ExtResource("3_2ta3k"), ExtResource("4_df73s"), ExtResource("5_7s46x"), ExtResource("6_gib3o"), ExtResource("7_3lmyq"), ExtResource("8_i5ipv"), ExtResource("9_w2f1a")])
+set_two = Array[Object]([ExtResource("10_cdvhx"), ExtResource("11_1vta8"), ExtResource("12_jpd1d"), ExtResource("13_jdbgb"), ExtResource("14_wd5x8"), ExtResource("15_7nyaq"), ExtResource("16_cnd87")])

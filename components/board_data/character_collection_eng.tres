@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterCollection" load_steps=9 format=3 uid="uid://dmteh5vc3wn7s"]
+
+[ext_resource type="Script" path="res://components/board_data/character_collection.gd" id="1_lvrli"]
+[ext_resource type="Resource" uid="uid://hy73dhuhhf01" path="res://components/board_data/character_data/eng_pawn.tres" id="2_gbacf"]
+[ext_resource type="Resource" uid="uid://ceucluxmpcgqe" path="res://components/board_data/character_data/eng_cannon.tres" id="3_0wce7"]
+[ext_resource type="Resource" uid="uid://dxyg57xe83s8r" path="res://components/board_data/character_data/eng_rook.tres" id="4_gsrj4"]
+[ext_resource type="Resource" uid="uid://c6bgy5ubtc05u" path="res://components/board_data/character_data/eng_horse.tres" id="5_4o147"]
+[ext_resource type="Resource" uid="uid://bwcq4pofmtpj5" path="res://components/board_data/character_data/eng_elephant.tres" id="6_cfb31"]
+[ext_resource type="Resource" uid="uid://ip5l5twb0myg" path="res://components/board_data/character_data/eng_advisor.tres" id="7_co8pd"]
+[ext_resource type="Resource" uid="uid://dbtlmh8jn6o2r" path="res://components/board_data/character_data/eng_king.tres" id="8_d61no"]
+
+[resource]
+script = ExtResource("1_lvrli")
+set_one = Array[Object]([ExtResource("2_gbacf"), ExtResource("3_0wce7"), ExtResource("4_gsrj4"), ExtResource("5_4o147"), ExtResource("6_cfb31"), ExtResource("7_co8pd"), ExtResource("8_d61no")])
+set_two = Array[Object]([ExtResource("2_gbacf"), ExtResource("3_0wce7"), ExtResource("4_gsrj4"), ExtResource("5_4o147"), ExtResource("6_cfb31"), ExtResource("7_co8pd"), ExtResource("8_d61no")])

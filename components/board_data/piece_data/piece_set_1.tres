@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PieceSetData" load_steps=4 format=3 uid="uid://d3itn1srevp7l"]
+
+[ext_resource type="Texture2D" uid="uid://bgm6g4c7b687u" path="res://assets/sprite/pieces/btn-brown.png" id="1_siip2"]
+[ext_resource type="Texture2D" uid="uid://dvxkxbwpxqxqy" path="res://assets/sprite/pieces/btn-red.png" id="2_rufmu"]
+[ext_resource type="Script" path="res://components/board_data/piece_set_data.gd" id="3_oa7r0"]
+
+[resource]
+script = ExtResource("3_oa7r0")
+red_texture = ExtResource("2_rufmu")
+black_texture = ExtResource("1_siip2")

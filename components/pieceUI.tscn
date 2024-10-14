@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7cxsy5jw86x8"]
+
+[ext_resource type="Script" path="res://components/pieceUI.gd" id="1_i61u1"]
+[ext_resource type="Texture2D" uid="uid://dvxkxbwpxqxqy" path="res://assets/sprite/pieces/btn-red.png" id="2_pxsgi"]
+[ext_resource type="Texture2D" uid="uid://cnvlsnr85jfvm" path="res://assets/sprite/chacters/chinese/Red/chinese-king.svg" id="3_m47k5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ys3b"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88879, 0.476538, 0.0104939, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="Piece" type="Button"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 60.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_2ys3b")
+flat = true
+script = ExtResource("1_i61u1")
+
+[node name="Sprite" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_pxsgi")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Character" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_m47k5")
+expand_mode = 1

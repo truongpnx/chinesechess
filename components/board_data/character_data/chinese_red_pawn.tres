@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://b5n1ncqewstpy"]
+
+[ext_resource type="Script" path="res://components/board_data/character_data.gd" id="1_cs8g6"]
+[ext_resource type="Texture2D" uid="uid://c6axr64dnfpss" path="res://assets/sprite/chacters/chinese/Red/chinese-pawn.svg" id="2_wg7ee"]
+
+[resource]
+script = ExtResource("1_cs8g6")
+name = 0
+texture = ExtResource("2_wg7ee")

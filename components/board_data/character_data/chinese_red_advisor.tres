@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://dkbll510rnmky"]
+
+[ext_resource type="Script" path="res://components/board_data/character_data.gd" id="1_qwpya"]
+[ext_resource type="Texture2D" uid="uid://8efjyenm6knr" path="res://assets/sprite/chacters/chinese/Red/chinese-advisor.svg" id="2_jo2fq"]
+
+[resource]
+script = ExtResource("1_qwpya")
+name = 5
+texture = ExtResource("2_jo2fq")

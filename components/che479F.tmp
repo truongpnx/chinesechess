@@ -1,0 +1,1711 @@
+[gd_scene load_steps=15 format=3 uid="uid://d3xgv5rmie671"]
+
+[ext_resource type="Script" path="res://components/chessboardUI.gd" id="1_fdnox"]
+[ext_resource type="Script" path="res://components/board_data/character_collection.gd" id="2_7x1ap"]
+[ext_resource type="Texture2D" uid="uid://ck3tsree61a43" path="res://assets/sprite/Xiquangi_Board.png" id="2_48hov"]
+[ext_resource type="Script" path="res://components/board_data/piece_set_data.gd" id="2_hcl45"]
+[ext_resource type="Resource" uid="uid://d3itn1srevp7l" path="res://components/board_data/piece_data/piece_set_1.tres" id="3_4xbar"]
+[ext_resource type="Resource" uid="uid://cnbvwcvbnnd27" path="res://components/board_data/character_collection_chinese.tres" id="3_cvvqx"]
+[ext_resource type="Shader" uid="uid://cxay5o14ixy24" path="res://shader/wood.tres" id="3_mic7v"]
+[ext_resource type="Resource" uid="uid://dmteh5vc3wn7s" path="res://components/board_data/character_collection_eng.tres" id="4_3mcnf"]
+[ext_resource type="PackedScene" uid="uid://b7cxsy5jw86x8" path="res://components/pieceUI.tscn" id="7_gwwqj"]
+[ext_resource type="Script" path="res://components/rules/board.gd" id="10_o8djq"]
+[ext_resource type="Script" path="res://components/marker_button.gd" id="10_stcf6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qhofp"]
+frequency = 0.0009
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3561j"]
+seamless_blend_skirt = 0.798
+noise = SubResource("FastNoiseLite_qhofp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asd5s"]
+shader = ExtResource("3_mic7v")
+shader_parameter/Color1 = Color(2.16588e-07, 0.423037, 0.275178, 1)
+shader_parameter/Color2 = Color(0.310841, 0.425298, 9.62615e-08, 1)
+shader_parameter/NoisePattern = SubResource("NoiseTexture2D_3561j")
+
+[node name="ChessboardUI" type="Control" node_paths=PackedStringArray("marker_map", "piece_container", "board")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdnox")
+piece_set_list = Array[ExtResource("2_hcl45")]([ExtResource("3_4xbar")])
+characters_collection_list = Array[ExtResource("2_7x1ap")]([ExtResource("3_cvvqx"), ExtResource("4_3mcnf")])
+piece_scene = ExtResource("7_gwwqj")
+marker_map = NodePath("MakerMap")
+piece_container = NodePath("PieceContainer")
+board = NodePath("Board")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_48hov")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/TextureRect"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_asd5s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.968411, 0.771061, 0.507724, 1)
+
+[node name="MakerMap" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Row0" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -336.0
+offset_right = 310.0
+offset_bottom = -334.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row0"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row1" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -263.0
+offset_right = 310.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row1"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row2" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -189.0
+offset_right = 310.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row3" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -116.0
+offset_right = 310.0
+offset_bottom = -114.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row4" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -42.0
+offset_right = 310.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row5" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 44.0
+offset_right = 310.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row6" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 117.0
+offset_right = 310.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row7" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 191.0
+offset_right = 310.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row8" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 264.0
+offset_right = 310.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row8"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="Row9" type="Control" parent="MakerMap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 338.0
+offset_right = 310.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -21.0
+offset_right = -289.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton2" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = -212.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton3" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -21.0
+offset_right = -135.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton4" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -21.0
+offset_right = -58.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton5" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton6" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -21.0
+offset_right = 97.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton7" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -21.0
+offset_right = 174.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton8" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = -21.0
+offset_right = 251.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="TextureButton9" type="TextureButton" parent="MakerMap/Row9"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -21.0
+offset_right = 330.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_stcf6")
+
+[node name="PieceContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 98.0
+offset_right = 20.0
+offset_bottom = 138.0
+grow_horizontal = 2
+
+[node name="Button" type="Button" parent="Control"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "Undo"
+
+[node name="Board" type="Node" parent="."]
+script = ExtResource("10_o8djq")
+
+[connection signal="pressed" from="Control/Button" to="." method="undo"]

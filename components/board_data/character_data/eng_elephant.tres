@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bwcq4pofmtpj5"]
+
+[ext_resource type="Script" path="res://components/board_data/character_data.gd" id="1_t1ukc"]
+[ext_resource type="Texture2D" uid="uid://b8cf3xc2o6r11" path="res://assets/sprite/chacters/eng/english-elephant.svg" id="2_61hq6"]
+
+[resource]
+script = ExtResource("1_t1ukc")
+name = 4
+texture = ExtResource("2_61hq6")

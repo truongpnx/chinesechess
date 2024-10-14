@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://byhmwiuuce6bi"]
+
+[ext_resource type="Script" path="res://components/board_data/character_data.gd" id="1_g3byy"]
+[ext_resource type="Texture2D" uid="uid://biklxlc3txvnj" path="res://assets/sprite/chacters/chinese/Black/chinese-rook.svg" id="2_rnlx8"]
+
+[resource]
+script = ExtResource("1_g3byy")
+name = 2
+texture = ExtResource("2_rnlx8")
