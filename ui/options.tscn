@@ -1,9 +1,235 @@
-[gd_scene format=3 uid="uid://8miffh6itf1x"]
+[gd_scene load_steps=9 format=3 uid="uid://8miffh6itf1x"]
+
+[ext_resource type="Theme" uid="uid://b2vk0kok5yp3n" path="res://ui/theme.tres" id="1_o5udr"]
+[ext_resource type="Texture2D" uid="uid://bubeic43vhoya" path="res://assets/ui/Previous.png" id="2_qgegs"]
+[ext_resource type="Script" path="res://ui/options.gd" id="2_xr3l2"]
+[ext_resource type="Texture2D" uid="uid://fntewc7214b5" path="res://assets/ui/Next.png" id="3_63jf4"]
+[ext_resource type="Resource" uid="uid://bqochbeq8toey" path="res://components/board_data/piece_set_holder.tres" id="3_v7o2f"]
+[ext_resource type="Resource" uid="uid://dgwv6ifthw5el" path="res://components/board_data/character_collection_holder.tres" id="4_s0o4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up1q7"]
+atlas = ExtResource("2_qgegs")
+region = Rect2(2, 2, 17.177, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agjif"]
+atlas = ExtResource("3_63jf4")
+region = Rect2(2, 2, 17, 17)
 
 [node name="Options" type="Control"]
+custom_minimum_size = Vector2(500, 800)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_o5udr")
+script = ExtResource("2_xr3l2")
+piece_set_holder = ExtResource("3_v7o2f")
+characters_collection_holder = ExtResource("4_s0o4x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -138.5
+offset_right = 250.0
+offset_bottom = 138.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 32
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.8
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.8
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Board"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BoardArrowLeft" type="TextureButton" parent="VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_qgegs")
+texture_pressed = SubResource("AtlasTexture_up1q7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BoardPreview" type="TextureRect" parent="VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+expand_mode = 1
+
+[node name="BoardArrowRight" type="TextureButton" parent="VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("3_63jf4")
+texture_pressed = SubResource("AtlasTexture_agjif")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Piece"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PieceArrowLeft" type="TextureButton" parent="VBoxContainer/HBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_qgegs")
+texture_pressed = SubResource("AtlasTexture_up1q7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PiecePreview" type="TextureRect" parent="VBoxContainer/HBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+expand_mode = 1
+
+[node name="PieceArrowRight" type="TextureButton" parent="VBoxContainer/HBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("3_63jf4")
+texture_pressed = SubResource("AtlasTexture_agjif")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Character"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CharArrowLeft" type="TextureButton" parent="VBoxContainer/HBoxContainer5/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_qgegs")
+texture_pressed = SubResource("AtlasTexture_up1q7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CharPreview" type="TextureRect" parent="VBoxContainer/HBoxContainer5/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+expand_mode = 1
+
+[node name="CharArrowRight" type="TextureButton" parent="VBoxContainer/HBoxContainer5/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+texture_normal = ExtResource("3_63jf4")
+texture_pressed = SubResource("AtlasTexture_agjif")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/HBoxContainer/BoardArrowLeft" to="." method="_on_board_arrow_pressed" binds= [-1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/HBoxContainer/BoardArrowRight" to="." method="_on_board_arrow_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/HBoxContainer/PieceArrowLeft" to="." method="_on_piece_arrow_pressed" binds= [-1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/HBoxContainer/PieceArrowRight" to="." method="_on_piece_arrow_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/HBoxContainer/CharArrowLeft" to="." method="_on_character_arrow_pressed" binds= [-1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/HBoxContainer/CharArrowRight" to="." method="_on_character_arrow_pressed" binds= [1]]

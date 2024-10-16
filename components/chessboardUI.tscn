@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3xgv5rmie671"]
+[gd_scene load_steps=12 format=3 uid="uid://d3xgv5rmie671"]
 
 [ext_resource type="Script" path="res://components/chessboardUI.gd" id="1_fdnox"]
-[ext_resource type="Script" path="res://components/board_data/character_collection.gd" id="2_7x1ap"]
 [ext_resource type="Texture2D" uid="uid://ck3tsree61a43" path="res://assets/sprite/Xiquangi_Board.png" id="2_48hov"]
-[ext_resource type="Script" path="res://components/board_data/piece_set_data.gd" id="2_hcl45"]
-[ext_resource type="Resource" uid="uid://d3itn1srevp7l" path="res://components/board_data/piece_data/piece_set_1.tres" id="3_4xbar"]
-[ext_resource type="Resource" uid="uid://cnbvwcvbnnd27" path="res://components/board_data/character_collection_chinese.tres" id="3_cvvqx"]
+[ext_resource type="Resource" uid="uid://bqochbeq8toey" path="res://components/board_data/piece_set_holder.tres" id="2_eyv6n"]
 [ext_resource type="Shader" uid="uid://cxay5o14ixy24" path="res://shader/wood.tres" id="3_mic7v"]
-[ext_resource type="Resource" uid="uid://dmteh5vc3wn7s" path="res://components/board_data/character_collection_eng.tres" id="4_3mcnf"]
+[ext_resource type="Resource" uid="uid://dgwv6ifthw5el" path="res://components/board_data/character_collection_holder.tres" id="3_udpkn"]
 [ext_resource type="PackedScene" uid="uid://b7cxsy5jw86x8" path="res://components/pieceUI.tscn" id="7_gwwqj"]
 [ext_resource type="Script" path="res://components/rules/board.gd" id="10_o8djq"]
 [ext_resource type="Script" path="res://components/marker_button.gd" id="10_stcf6"]
@@ -33,8 +30,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fdnox")
-piece_set_list = Array[ExtResource("2_hcl45")]([ExtResource("3_4xbar")])
-characters_collection_list = Array[ExtResource("2_7x1ap")]([ExtResource("3_cvvqx"), ExtResource("4_3mcnf")])
+piece_set_holder = ExtResource("2_eyv6n")
+characters_collection_holder = ExtResource("3_udpkn")
 piece_scene = ExtResource("7_gwwqj")
 marker_map = NodePath("MakerMap")
 piece_container = NodePath("PieceContainer")

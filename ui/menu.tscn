@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1fk8sxqjvxey"]
+[gd_scene load_steps=6 format=3 uid="uid://b1fk8sxqjvxey"]
 
 [ext_resource type="FontFile" uid="uid://busfq3eoktd1" path="res://assets/fonts/Eracake.ttf" id="1_0rdah"]
+[ext_resource type="Script" path="res://ui/menu.gd" id="2_qpgkd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w44o"]
 bg_color = Color(1, 0.632934, 0.279423, 1)
@@ -47,6 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_0y2se")
+script = ExtResource("2_qpgkd")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -85,3 +87,8 @@ text = "Options"
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "About"
+
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/OnePlayer" to="." method="on_one_player_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/TwoPlayer" to="." method="on_two_player_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/Options" to="." method="on_options_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/About" to="." method="on_about_pressed"]
