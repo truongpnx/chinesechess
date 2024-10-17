@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://8miffh6itf1x"]
 
 [ext_resource type="Theme" uid="uid://b2vk0kok5yp3n" path="res://ui/theme.tres" id="1_o5udr"]
-[ext_resource type="Texture2D" uid="uid://bubeic43vhoya" path="res://assets/ui/Previous.png" id="2_qgegs"]
+[ext_resource type="Texture2D" uid="uid://bubeic43vhoya" path="res://assets/sprite/ui/Previous.png" id="2_qgegs"]
 [ext_resource type="Script" path="res://ui/options.gd" id="2_xr3l2"]
-[ext_resource type="Texture2D" uid="uid://fntewc7214b5" path="res://assets/ui/Next.png" id="3_63jf4"]
+[ext_resource type="Texture2D" uid="uid://fntewc7214b5" path="res://assets/sprite/ui/Next.png" id="3_63jf4"]
 [ext_resource type="Resource" uid="uid://bqochbeq8toey" path="res://components/board_data/piece_set_holder.tres" id="3_v7o2f"]
 [ext_resource type="Resource" uid="uid://dgwv6ifthw5el" path="res://components/board_data/character_collection_holder.tres" id="4_s0o4x"]
 
@@ -227,9 +227,12 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
 
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MusicSlider" to="." method="_on_music_slider_change"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_change"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/HBoxContainer/BoardArrowLeft" to="." method="_on_board_arrow_pressed" binds= [-1]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/HBoxContainer/BoardArrowRight" to="." method="_on_board_arrow_pressed" binds= [1]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer4/HBoxContainer/PieceArrowLeft" to="." method="_on_piece_arrow_pressed" binds= [-1]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer4/HBoxContainer/PieceArrowRight" to="." method="_on_piece_arrow_pressed" binds= [1]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer5/HBoxContainer/CharArrowLeft" to="." method="_on_character_arrow_pressed" binds= [-1]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer5/HBoxContainer/CharArrowRight" to="." method="_on_character_arrow_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer6/BackBtn" to="." method="go_back"]

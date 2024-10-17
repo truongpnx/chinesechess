@@ -2,20 +2,6 @@
 
 [ext_resource type="FontFile" uid="uid://busfq3eoktd1" path="res://assets/fonts/Eracake.ttf" id="1_hfw6o"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w44o"]
-bg_color = Color(1, 0.632934, 0.279423, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.419982, 0.250914, 1.44392e-07, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_size = 3
-shadow_offset = Vector2(5, 3)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rihu"]
 bg_color = Color(1, 0.632934, 0.279423, 1)
 border_width_left = 5
@@ -32,10 +18,24 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w44o"]
+bg_color = Color(1, 0.632934, 0.279423, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.419982, 0.250914, 1.44392e-07, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 3
+shadow_offset = Vector2(5, 3)
+
 [resource]
 Button/colors/font_color = Color(0, 0.148817, 0.156845, 1)
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_hfw6o")
+Button/styles/hover = SubResource("StyleBoxFlat_4rihu")
 Button/styles/normal = SubResource("StyleBoxFlat_5w44o")
 Button/styles/pressed = SubResource("StyleBoxFlat_4rihu")
-Label/fonts/font = ExtResource("1_hfw6o")

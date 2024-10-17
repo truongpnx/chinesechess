@@ -8,3 +8,4 @@
 script = ExtResource("3_oa7r0")
 red_texture = ExtResource("2_rufmu")
 black_texture = ExtResource("1_siip2")
+preview_texture = ExtResource("2_rufmu")

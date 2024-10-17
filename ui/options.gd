@@ -2,7 +2,6 @@ extends BaseUI
 
 
 const save_path = "user://options_data.tres"
-signal back_pressed
 
 @export var piece_set_holder: PieceSetHolder
 @export var characters_collection_holder: CharacterCollectionHolder
@@ -12,9 +11,12 @@ var options_data: OptionsData
 var music_bus_id = AudioServer.get_bus_index("Music")
 var sfx_bus_id = AudioServer.get_bus_index("SFX")
 
+@onready var board_preview: TextureRect = %BoardPreview
+@onready var piece_preview: TextureRect = %PiecePreview
+@onready var char_preview: TextureRect = %CharPreview
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	%BackBtn.pressed.connect(_on_back_pressed)
 	load_data()
 	handle_data_change()
 
@@ -29,6 +31,10 @@ func save_data():
 	ResourceSaver.save(options_data, save_path)
 
 func handle_data_change():
+	piece_preview.texture = piece_set_holder.get_set(options_data.piece_set_idx).preview_texture
+	char_preview.texture = characters_collection_holder.get_collection(options_data.character_set_idx).preview_texture
+	#board_preview.texture = board_set_holder.get_collection(options_data.board_set_idx).preview_texture
+	
 	SignalBus.board_settings_updated.emit(options_data.piece_set_idx, options_data.character_set_idx)
 
 #region Board Appearance Settings
@@ -55,15 +61,4 @@ func _on_music_slider_change(value: float):
 func _on_sfx_slider_change(value: float):
 	AudioServer.set_bus_volume_db(sfx_bus_id, linear_to_db(value))
 	AudioServer.set_bus_mute(sfx_bus_id, value < 0.05)
-#endregion
-
-#region Back behaviour 
-func _on_back_pressed():
-	back_pressed.emit()
-
-func _notification(what: int) -> void:
-	match what:
-		NOTIFICATION_WM_GO_BACK_REQUEST:
-			back_pressed.emit()
-
 #endregion
