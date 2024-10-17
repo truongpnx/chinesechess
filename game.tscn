@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cihfc8as1mue3"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_g56g6"]
+[ext_resource type="PackedScene" uid="uid://b1fk8sxqjvxey" path="res://ui/menu.tscn" id="2_6x175"]
+[ext_resource type="Shader" uid="uid://bvc3piwd2koe3" path="res://shader/background.tres" id="2_701ku"]
+[ext_resource type="PackedScene" uid="uid://8miffh6itf1x" path="res://ui/options.tscn" id="3_dc6j6"]
+[ext_resource type="PackedScene" uid="uid://d3xgv5rmie671" path="res://components/chessboardUI.tscn" id="4_hcvgb"]
+[ext_resource type="AudioStream" uid="uid://bva4sr57bag0u" path="res://assets/audios/ocean.mp3" id="6_5dl70"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwsma"]
+shader = ExtResource("2_701ku")
+shader_parameter/LightStrength = 0.075
+shader_parameter/Color = Color(0.137294, 0.20769, 0.0873317, 1)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g56g6")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_iwsma")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" parent="." instance=ExtResource("2_6x175")]
+layout_mode = 1
+offset_top = -2.0
+offset_bottom = -2.0
+
+[node name="Options" parent="." instance=ExtResource("3_dc6j6")]
+layout_mode = 1
+
+[node name="ChessboardUI" parent="." instance=ExtResource("4_hcvgb")]
+layout_mode = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5dl70")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

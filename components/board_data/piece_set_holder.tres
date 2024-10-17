@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PieceSetHolder" load_steps=4 format=3 uid="uid://bqochbeq8toey"]
+
+[ext_resource type="Script" path="res://components/board_data/piece_set_data.gd" id="1_d5be1"]
+[ext_resource type="Resource" uid="uid://d3itn1srevp7l" path="res://components/board_data/piece_data/piece_set_1.tres" id="2_chpwp"]
+[ext_resource type="Script" path="res://components/board_data/piece_set_holder.gd" id="2_v8ycg"]
+
+[resource]
+script = ExtResource("2_v8ycg")
+list = Array[ExtResource("1_d5be1")]([ExtResource("2_chpwp")])

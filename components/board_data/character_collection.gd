@@ -21,6 +21,8 @@ class_name CharacterCollection
 	CharacterData.new(),
 ]
 
+@export var preview_texture: Texture2D
+
 func get_data_of_piece_name(set_idx: int, name: Piece.NAME) -> CharacterData:
 	'''
 		"set_idx" value should be 0 or 1

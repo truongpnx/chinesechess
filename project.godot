@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="ChineseChess"
-run/main_scene="res://components/chessboardUI.tscn"
+run/main_scene="res://game.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 

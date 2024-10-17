@@ -1,20 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1fk8sxqjvxey"]
+[gd_scene load_steps=6 format=3 uid="uid://b1fk8sxqjvxey"]
 
 [ext_resource type="FontFile" uid="uid://busfq3eoktd1" path="res://assets/fonts/Eracake.ttf" id="1_0rdah"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w44o"]
-bg_color = Color(1, 0.632934, 0.279423, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.419982, 0.250914, 1.44392e-07, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_size = 3
-shadow_offset = Vector2(5, 3)
+[ext_resource type="Script" path="res://ui/menu.gd" id="2_qpgkd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rihu"]
 bg_color = Color(1, 0.632934, 0.279423, 1)
@@ -32,10 +19,25 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w44o"]
+bg_color = Color(1, 0.632934, 0.279423, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.419982, 0.250914, 1.44392e-07, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 3
+shadow_offset = Vector2(5, 3)
+
 [sub_resource type="Theme" id="Theme_0y2se"]
 Button/colors/font_color = Color(0, 0.148817, 0.156845, 1)
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_0rdah")
+Button/styles/hover = SubResource("StyleBoxFlat_4rihu")
 Button/styles/normal = SubResource("StyleBoxFlat_5w44o")
 Button/styles/pressed = SubResource("StyleBoxFlat_4rihu")
 
@@ -47,6 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_0y2se")
+script = ExtResource("2_qpgkd")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -85,3 +88,8 @@ text = "Options"
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "About"
+
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/OnePlayer" to="." method="on_one_player_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/TwoPlayer" to="." method="on_two_player_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/Options" to="." method="on_options_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/About" to="." method="on_about_pressed"]

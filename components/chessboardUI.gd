@@ -1,10 +1,10 @@
-extends Control
+extends BaseUI
 
 signal end_game
 
 @export_group("Apperence Data")
-@export var piece_set_list: Array[PieceSetData] = []
-@export var characters_collection_list: Array[CharacterCollection] = []
+@export var piece_set_holder: PieceSetHolder
+@export var characters_collection_holder: CharacterCollectionHolder
 @export var piece_scene: PackedScene
 
 @export_group("Container Node")
@@ -85,12 +85,13 @@ func _update_piece_UI(pieces_UI: Array[PieceUI]):
 		
 		match piece.data.color:
 			Piece.COLOR.Red:
-				piece_sprite = piece_set_list[piece_set_idx].red_texture
+				piece_sprite = piece_set_holder.get_set(piece_set_idx).red_texture
 			Piece.COLOR.Black:
-				piece_sprite = piece_set_list[piece_set_idx].black_texture
+				piece_sprite = piece_set_holder.get_set(piece_set_idx).black_texture
 		
-		var character_data := characters_collection_list[character_set_idx].get_data_of_piece_name(0, piece.data.name)
-		assert(character_data, "Missing Character Data at Character Collection num " + str(character_set_idx))
+		var character_data := characters_collection_holder \
+								.get_collection(character_set_idx) \
+								.get_data_of_piece_name(0, piece.data.name)
 		
 		piece.update_UI(piece_sprite, character_data.texture)
 

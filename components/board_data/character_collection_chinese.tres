@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CharacterCollection" load_steps=17 format=3 uid="uid://cnbvwcvbnnd27"]
+[gd_resource type="Resource" script_class="CharacterCollection" load_steps=18 format=3 uid="uid://cnbvwcvbnnd27"]
 
+[ext_resource type="Texture2D" uid="uid://c6axr64dnfpss" path="res://assets/sprite/chacters/chinese/Red/chinese-pawn.svg" id="1_acrmn"]
 [ext_resource type="Script" path="res://components/board_data/character_collection.gd" id="1_ileeb"]
 [ext_resource type="Script" path="res://components/board_data/character_data.gd" id="2_tqual"]
 [ext_resource type="Resource" uid="uid://b5n1ncqewstpy" path="res://components/board_data/character_data/chinese_red_pawn.tres" id="3_2ta3k"]
@@ -21,3 +22,4 @@
 script = ExtResource("1_ileeb")
 set_one = Array[ExtResource("2_tqual")]([ExtResource("3_2ta3k"), ExtResource("4_df73s"), ExtResource("5_7s46x"), ExtResource("6_gib3o"), ExtResource("7_3lmyq"), ExtResource("8_i5ipv"), ExtResource("9_w2f1a")])
 set_two = Array[Object]([ExtResource("10_cdvhx"), ExtResource("11_1vta8"), ExtResource("12_jpd1d"), ExtResource("13_jdbgb"), ExtResource("14_wd5x8"), ExtResource("15_7nyaq"), ExtResource("16_cnd87")])
+preview_texture = ExtResource("1_acrmn")
