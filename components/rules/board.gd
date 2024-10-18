@@ -83,15 +83,16 @@ func reset():
 			state.map[MAX_HEIGHT - pos[0]][pos[1]] = black_piece
 	
 
-## Return a dictionary<Vector2, Array[Vector2]> of all posible move at current turn
+## Return a array of [from: Vector2, to: Vector2] of all posible move at current turn
 func get_all_valid_move(_state: BoardState) -> Array:
-	var movable = {}
+	var movable = []
 	for i in range(MAX_HEIGHT + 1):
 		for j in range(MAX_WIDTH + 1):
 			var piece = _state.map[i][j]
 			if piece is Piece and piece.color == state.current_turn:
-				movable[piece.position] = get_piece_valid_move(_state, Vector2(i, j))
-
+				var pos = Vector2(i, j)
+				var move_pairs = get_piece_valid_move(_state, Vector2(i, j)).map(func(e): return [pos, e])
+				movable.append_array(move_pairs)
 
 	return movable
 

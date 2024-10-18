@@ -12,4 +12,4 @@ func _init(_color: COLOR, _name: NAME) -> void:
 	self.name = _name
 
 func _to_string() -> String:
-	return "[Color: %s, Name: %s]" % [color, name]
+	return "[%s, %s]" % [color, name]

@@ -13,6 +13,7 @@ signal end_game
 
 @export_group("Logic Node")
 @export var board: Board
+@export var minimax_agent: MinimaxAgent
 
 @export_group("Transition Effect")
 @export var move_time: float = 0.5
@@ -30,8 +31,8 @@ var character_set_idx: int = 0
 func _ready() -> void:
 
 	SignalBus.board_settings_updated.connect(_on_board_settings_update)
+	minimax_agent.made_move.connect(_on_made_move)
 	_assign_marker_data()
-
 	_reset()
 
 func _reset():
@@ -100,7 +101,6 @@ func _on_marker_trigger(pos: Vector2):
 		move(current_pick, pos)
 
 func _on_piece_pressed(piece: PieceUI):
-
 	if current_pick and piece.data.color != board.state.current_turn:
 		move(current_pick, piece.board_position)
 		
@@ -113,8 +113,8 @@ func move(piece: PieceUI, marker_indices: Vector2):
 	if not board.is_valid_move(board.state, piece.board_position, marker_indices):
 		return
 	
-	_set_enable_piece(black_pieces_UI, false)
-	_set_enable_piece(red_pieces_UI, false)
+	#_set_disnable_piece(black_pieces_UI, true)
+	#_set_disnable_piece(red_pieces_UI, true)
 	
 	var global_target_pos = _get_marker_global_position(marker_indices) - piece.size / 2
 	var tween = create_tween()
@@ -142,6 +142,10 @@ func move(piece: PieceUI, marker_indices: Vector2):
 		print("End")
 		end_game.emit()
 
+func auto_move():
+	_set_disnable_piece(black_pieces_UI, true)
+	_set_disnable_piece(red_pieces_UI, true)
+	minimax_agent.make_move(board.state, 3)
 
 func undo():
 	var state = previous_state.pop_back()
@@ -153,7 +157,7 @@ func _get_marker_global_position(marker_indices: Vector2):
 	var marker = marker_map.get_child(int(marker_indices.x)).get_child(int(marker_indices.y)) as MarkerButton
 	return marker.global_position + marker.size/2
 
-func _set_enable_piece(piece_set: Array[PieceUI], value: bool):
+func _set_disnable_piece(piece_set: Array[PieceUI], value: bool):
 	for piece: PieceUI in piece_set:
 		piece.set_deferred("disabled", value)
 
@@ -161,4 +165,13 @@ func _on_board_settings_update(_piece_set_idx: int, _character_set_idx: int):
 	piece_set_idx = _piece_set_idx
 	character_set_idx = _character_set_idx
 	_update_UI()
+
+func _on_made_move(from: Vector2, to: Vector2):
+	var piece = null
+	for p: PieceUI in piece_container.get_children():
+		if p.board_position == from:
+			piece = p
+			break
+	
+	move(piece, to)
 	

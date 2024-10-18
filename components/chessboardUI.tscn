@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3xgv5rmie671"]
+[gd_scene load_steps=14 format=3 uid="uid://d3xgv5rmie671"]
 
 [ext_resource type="Script" path="res://components/chessboardUI.gd" id="1_fdnox"]
 [ext_resource type="Texture2D" uid="uid://ck3tsree61a43" path="res://assets/sprite/Xiquangi_Board.png" id="2_48hov"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://b2vk0kok5yp3n" path="res://ui/theme.tres" id="8_mesyg"]
 [ext_resource type="Script" path="res://components/rules/board.gd" id="10_o8djq"]
 [ext_resource type="Script" path="res://components/marker_button.gd" id="10_stcf6"]
+[ext_resource type="Script" path="res://components/minimax/minimax_agent.gd" id="10_xs5sm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qhofp"]
 frequency = 0.0009
@@ -23,7 +24,7 @@ shader_parameter/Color1 = Color(2.16588e-07, 0.423037, 0.275178, 1)
 shader_parameter/Color2 = Color(0.310841, 0.425298, 9.62615e-08, 1)
 shader_parameter/NoisePattern = SubResource("NoiseTexture2D_3561j")
 
-[node name="ChessboardUI" type="Control" node_paths=PackedStringArray("marker_map", "piece_container", "board")]
+[node name="ChessboardUI" type="Control" node_paths=PackedStringArray("marker_map", "piece_container", "board", "minimax_agent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +38,7 @@ piece_scene = ExtResource("7_gwwqj")
 marker_map = NodePath("MakerMap")
 piece_container = NodePath("PieceContainer")
 board = NodePath("Board")
+minimax_agent = NodePath("MinimaxAgent")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -1718,8 +1720,25 @@ offset_bottom = 70.0
 grow_horizontal = 2
 text = "Undo"
 
+[node name="Button2" type="Button" parent="Control"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 76.0
+offset_right = 176.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "Auto"
+
 [node name="Board" type="Node" parent="."]
 script = ExtResource("10_o8djq")
 
+[node name="MinimaxAgent" type="Node" parent="." node_paths=PackedStringArray("board")]
+script = ExtResource("10_xs5sm")
+board = NodePath("../Board")
+
 [connection signal="pressed" from="Control2/BackBtn" to="." method="go_back"]
 [connection signal="pressed" from="Control/Button" to="." method="undo"]
+[connection signal="pressed" from="Control/Button2" to="." method="auto_move"]

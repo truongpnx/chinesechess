@@ -10,7 +10,7 @@ func _init() -> void:
 	current_turn = Piece.COLOR.Red
 	map.resize(Board.MAX_HEIGHT + 1)
 	for row in map:
-		row.resize(Board.MAX_HEIGHT + 1)
+		row.resize(Board.MAX_WIDTH + 1)
 		row.fill(null)
 
 
@@ -24,12 +24,9 @@ func duplicate():
 
 func _to_string() -> String:
 	var res = ""
-	res += "Current turn " + str(current_turn) + '\n'
+	res += "Turn " + str(current_turn) + '\n'
 	for row in map:
-		res += '['
-		for cell in row:
-			res += str(cell) + ', '
-		res += ']\n'
-	res += "End game " + str(end_game) + '\n'
-	
+		var str_row = ','.join(row.map(func(e): return str(e)))
+		res += '[' + str_row + ']\n'
+	res += "End " + str(end_game)
 	return res
